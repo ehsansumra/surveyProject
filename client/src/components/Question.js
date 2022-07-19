@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Question = (props) => {
+
+const QuestionForm = (props) => {
     return (
         <div className="Question">
             <p>{props.title}</p>
@@ -8,4 +9,4 @@ const Question = (props) => {
     )
 }
 
-export default Question;
+export default QuestionForm;

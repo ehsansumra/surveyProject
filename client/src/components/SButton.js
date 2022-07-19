@@ -4,7 +4,14 @@ import Button from "react-bootstrap/Button";
 const SButton = (props) => {
     
     return (
-        <Button onClick={props.onClick} style={props.style}>{props.text}</Button>
+        
+        <Button 
+            variant={props.variant ? props.variant : "primary"}
+            onClick={props.onClick} 
+            style={props.style}
+            className={props.className}
+        
+        >{props.text}</Button>
     );
 
 }

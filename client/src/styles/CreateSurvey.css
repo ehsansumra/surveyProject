@@ -1,20 +1,20 @@
 .main-content {
-    height: 100%;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap:wrap;
 }
 
 .create-box {
-    border: 1px solid black;
     padding: 5px;
     margin: 5px;
-    width: auto;
+    width: 600px;
     min-width: 100px;
     /* background-color: #C0C0C0; */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 5px;
+    background-color:  	#F1F1F1;
 }
 
 .drop-down {
