@@ -10,7 +10,7 @@ const CreateSurvey = () => {
     const [component, setComponent] = useState(null);
     
     const addQuestionForm = (title) => {
-        setComponent(<QuestionForm title={title}/>);
+        setComponent(<QuestionForm label={title} title={title}/>);
     }
 
     // Have each button press render a interactable component
