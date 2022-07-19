@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup"
 import CloseButton from "react-bootstrap/CloseButton"
+import Button from "react-bootstrap/Button"
 import { SButton } from "./SButton";
 
 
@@ -12,7 +13,17 @@ const QuestionForm = (props) => {
     const [components, setComponents] = useState([]);
 
     const addComponent = () => {
-        setComponents([...components, <AnswerBox/>])
+        console.log("yo")
+        let res = []
+        let i = 0;
+
+        while (i < components.length) {
+            res.push(components[i])
+            i++
+        }
+
+        res.push(<AnswerBox index={i}/>)
+        setComponents(res)
     }
 
     //TODO: try deleting specific components depending on button press.
@@ -20,13 +31,19 @@ const QuestionForm = (props) => {
         setComponents([...components].slice(0, components.length - 1));
     }
 
+    const handleRemove = (idx) => {
+        console.log("key " + idx)
+        console.log(components)
+        setComponents(components.filter((item, index)=> index !== idx))
+    }
+
     let fieldStyle = {marginBottom: "15px", borderRadius:"0"}
 
-    const AnswerBox = (props) => {
+    const AnswerBox = ({index}) => {
         return (
             <InputGroup>
                 <Form.Control placeholder="Answer" style={fieldStyle} />
-                <SButton onClick={removeComponent} style={fieldStyle} variant="secondary" className="edit-button" text="Delete" />
+                <SButton onClick={() => handleRemove(index)} style={fieldStyle} variant="outline-secondary" className="edit-button" text="Delete" />
             </InputGroup>
         )
     }
@@ -48,11 +65,11 @@ const QuestionForm = (props) => {
 
                     <Form.Group>
                         <AnswerBox/>
-                        {components.map((item, i) => (<AnswerBox key={i.toString()}/>))}
+                        {components.map((item, i) => (item))}
                     </Form.Group>
 
                     <div className="edit-container">
-                        <SButton className="submit-button" text="Save" />
+                        <Button type="submit" className="submit-button">Save</Button>
                     </div>
 
                 </Form>
