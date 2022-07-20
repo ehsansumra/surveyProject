@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import '../styles/CreateSurvey.css';
 import { SButton } from "./SButton"
-import { MultipleChoice } from './MultipleChoice.js';
-import Card from "react-bootstrap/Card"
 import { QuestionForm } from './QuestionForm';
 const CreateSurvey = () => {
     let buttonStyle = {margin: "5px"}

@@ -6,9 +6,10 @@ import CloseButton from "react-bootstrap/CloseButton"
 import Button from "react-bootstrap/Button"
 import { SButton } from "./SButton";
 
-
 import "../styles/QuestionForm.css";
 
+
+// TODO: CLEAN UP DA CODE
 const QuestionForm = (props) => {
     // components is an array of AnswerBox components, Used to track and alter the display and # of answer fields on the screen
     const [components, setComponents] = useState([]);
@@ -39,6 +40,7 @@ const QuestionForm = (props) => {
     }
 
     const deleteAnswer = (index) => {
+        if (answers.length <= 2) return
         const newArr = [...answers];
         newArr.splice(index, 1)
 
@@ -50,11 +52,6 @@ const QuestionForm = (props) => {
         let len = components.length;
         setComponents([...components, <AnswerBox key={len} index={len}/>])
         console.log(components)
-    }
-
-    //TODO: try deleting specific components depending on button press.
-    const removeComponent = () => {
-        setComponents([...components].slice(0, components.length - 1));
     }
 
     // remove an AnswerBox from components state.
@@ -72,6 +69,7 @@ const QuestionForm = (props) => {
 
     // this is being tracked by components state.
     // contains a button that calls handleRemove
+    
     const AnswerBox = ({ index}) => {
         return (
             <InputGroup>

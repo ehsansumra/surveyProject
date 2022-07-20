@@ -5,7 +5,7 @@ import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import reportWebVitals from './reportWebVitals';
 import CreateSurvey from './components/CreateSurvey';
-import TestApp from './components/TestApp';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
