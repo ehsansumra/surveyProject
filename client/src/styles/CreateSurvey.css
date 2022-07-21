@@ -3,13 +3,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
+    
 }
 
 .create-box {
-    padding: 5px;
+    border: 0;
+    border-radius: 0;
     margin: 5px;
+    margin-bottom: 15px;
     width: 600px;
     min-width: 100px;
     /* background-color: #C0C0C0; */
@@ -21,3 +23,11 @@
     margin: 10px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.create-button {
+    margin: 5px;
+}

@@ -1,0 +1,10 @@
+.construct-question {
+    display: inline-block;
+    width: 100%;
+    word-break: break-all;
+}
+
+.radio-button-container {
+    display: flex;
+    flex-wrap: wrap;
+}
