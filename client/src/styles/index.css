@@ -1,5 +1,11 @@
-body, html {
+:root {
+    --dark-primary: rgb(43, 42, 51);
+    --dark-secondary: rgba(66, 65, 77, 1);
+    --dark-tertiary: rgb(56, 56, 61);
+    --light-primary: #F1F1F1;
+}
 
+body, html {
     margin: 0;
 }
 
@@ -10,5 +16,9 @@ body, html {
 
 .text-field {
     margin-bottom: 15px; 
-    border-radius: 0;
+    
+}
+
+.card-header {
+    background-color: var(dar);
 }

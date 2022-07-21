@@ -1,10 +1,30 @@
+.card-header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-tertiary);
+}
 .construct-question {
+    margin-top: 14px;
     display: inline-block;
-    width: 100%;
+    width: 80%;
+    word-break: break-all;
+}
+
+.construct-answer {
+    display: inline-block;
+    width: 80%;
     word-break: break-all;
 }
 
 .radio-button-container {
     display: flex;
     flex-wrap: wrap;
+}
+
+.close-button-container {
+    padding-top: 14px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
 }

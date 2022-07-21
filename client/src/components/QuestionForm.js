@@ -11,15 +11,14 @@ import { AnswersHook } from "../hooks/AnswersHook";
 
 
 // TODO: CLEAN UP DA CODE
-const QuestionForm = ({ title, updateForm }) => {
+const QuestionForm = ({ type, addForm }) => {
     // components is an array of AnswerBox components, Used to track and alter the display and # of answer fields on the screen
-    useEffect(() => console.log("QuestionForm rerender"))
     const [question, setQuestion] = useState("");
 
     const answersHook = AnswersHook();
 
     const createAnswerBox = (answer, index) => {
-        return <AnswerBoxes answer={answer} answersHook={answersHook} key= {index} index={index} />
+        return <AnswerBoxes answer={answer} answersHook={answersHook} key={index} index={index} />
     }
 
     let fieldStyle = { marginBottom: "15px", borderRadius: "0" }
@@ -27,8 +26,12 @@ const QuestionForm = ({ title, updateForm }) => {
     //Prevent the the default refresh of the form
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = {question: question, answers: answersHook.answers}
-        updateForm(formData)
+        const formData = {
+            question: question,
+            answers: answersHook.answers,
+            type: type
+        }
+        addForm(formData)
     }
 
     const [count, setCount] = useState(0);
@@ -39,34 +42,31 @@ const QuestionForm = ({ title, updateForm }) => {
 
     return (
         <Card className="question-card">
-            <Card.Body>
+            <Form onSubmit={handleSubmit}>
+                <Card.Header className="card-header">
+                    <div className="edit-container">
+                        <Form.Label className="question-title">{type}</Form.Label>
+                        {
+                            type !== "Open Ended" ?
+                                <SButton onClick={() => answersHook.addAnswer(count)} variant="dark" className="edit-button" text="Add answer" />
+                                : null
+                        }
+                    </div>
+                </Card.Header>
 
-                <Form onSubmit={handleSubmit}>
-
-                    <Form.Group>
-                        <div className="edit-container">
-                            <Form.Label>{title}</Form.Label>
-                            <SButton onClick={() => {
-                                increment();
-                                answersHook.addAnswer(count);
-                            }
-                                } variant="secondary" className="edit-button" text="Add answer" />
-                        </div>
-
-                        <Form.Control value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="Question" style={fieldStyle}></Form.Control>
-                    </Form.Group>
-
+                <Card.Body>
+                    <Form.Control className="text-field" value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="Question" ></Form.Control>
                     <Form.Group>
                         {answersHook.answers.map((answer, i) => (createAnswerBox(answer, i)))}
                     </Form.Group>
+                </Card.Body>
 
+                <Card.Footer>
                     <div className="edit-container">
-                        <Button type="submit" className="submit-button">Save</Button>
+                        <Button type="submit" variant="dark" className="submit-button">Save</Button>
                     </div>
-
-                </Form>
-
-            </Card.Body>
+                </Card.Footer>
+            </Form>
 
         </Card>
     )
