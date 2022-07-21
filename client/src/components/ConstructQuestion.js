@@ -15,16 +15,14 @@ import "../styles/ConstructQuestion.css"
 
 // using hook for the closebutton, call a delete callback function
 const ConstructQuestion = ({ data, deleteForm, index, handleMoveUp, handleMoveDown}) => {
-
+    
     const handleQuestionType = () => {
-        console.log(data.type)
         if (!data.type) return;
         let formCheckType = "radio"
 
         if (data.type === "Check Boxes") formCheckType = "checkbox";
 
         if (data.type === "Open Ended") {
-            console.log("open end")
             return <Form.Control as="textarea" className="text-field" disabled rows={3} />
         } else {
             return (data.answers.map((answer, i) => (<Form.Check key={i} className="construct-answer" id="disabled" type={formCheckType} disabled label={answer} />)))
