@@ -8,8 +8,6 @@ import Card from "react-bootstrap/Card"
 
 const CreateSurvey = () => {
 
-    let buttonStyle = { margin: "5px" }
-
     const [component, setComponent] = useState(null);
 
     const [formData, setFormData] = useState([]);
@@ -25,16 +23,38 @@ const CreateSurvey = () => {
         setFormData(newArr);
     }
 
+    const moveDown = (index) => {
+        if (!formData[index + 1]) return;
+        let newArr = [...formData];
+        let temp = newArr[index + 1];
+        
+        newArr[index + 1] = newArr[index];
+        newArr[index] = temp;
+
+        setFormData(newArr);
+    }
+
+    const moveUp = (index) => {
+        if (!formData[index - 1]) return;
+        let newArr = [...formData];
+
+        let temp = newArr[index - 1];
+        newArr[index - 1] = newArr[index];
+        newArr[index] = temp;
+
+        setFormData(newArr);
+    }
+
     const setQuestionForm = (type) => {
         setComponent(<QuestionForm key={type} type={type} addForm={addForm} />);
     }
-    // Have each button press render a interactable component
+
     return (
         <div className="page">
 
             <div className="main-content">
                 {formData.map((data, i) => (
-                    <ConstructQuestion key={i} index={i} data={data} deleteForm={deleteForm} />
+                    <ConstructQuestion key={i} index={i} data={data} deleteForm={deleteForm} handleMoveUp={moveUp} handleMoveDown={moveDown}/>
                 )
                 )}
 

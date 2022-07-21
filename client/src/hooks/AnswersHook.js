@@ -10,7 +10,7 @@ const AnswersHook = () => {
         setAnswers(newArr)
     }
 
-    const addAnswer = (a) => {
+    const addAnswer = () => {
         setAnswers([...answers, ""])
     }
 

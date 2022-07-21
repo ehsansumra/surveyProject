@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import CloseButton from "react-bootstrap/CloseButton";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Form from "react-bootstrap/Form";
 
 import "../styles/ConstructQuestion.css"
@@ -12,7 +14,7 @@ import "../styles/ConstructQuestion.css"
 // for now assuming multiple choice.
 
 // using hook for the closebutton, call a delete callback function
-const ConstructQuestion = ({ data, deleteForm, index }) => {
+const ConstructQuestion = ({ data, deleteForm, index, handleMoveUp, handleMoveDown}) => {
 
     const handleQuestionType = () => {
         console.log(data.type)
@@ -33,9 +35,12 @@ const ConstructQuestion = ({ data, deleteForm, index }) => {
         <Card className="question-card">
             <Card.Header className="card-header">
                 <Card.Text className="construct-question">{data.question}</Card.Text>
-                <div className="close-button-container">
-                    <CloseButton variant="white" onClick={() => deleteForm(index)} />
-                </div>
+                <ButtonGroup>
+                <Button onClick={() => handleMoveUp(index)} variant="dark" className="create-button up-arrow">&#8593;</Button>
+                <Button onClick={() => handleMoveDown(index)}variant="dark" className="create-button down-arrow">&#8595;</Button>
+                <Button onClick={() => deleteForm(index)} variant="dark" className="create-button" >&#x2715;</Button>
+                </ButtonGroup>
+                
             </Card.Header>
 
             <Card.Body className="radio-button-container">

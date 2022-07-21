@@ -21,8 +21,6 @@ const QuestionForm = ({ type, addForm }) => {
         return <AnswerBoxes answer={answer} answersHook={answersHook} key={index} index={index} />
     }
 
-    let fieldStyle = { marginBottom: "15px", borderRadius: "0" }
-
     //Prevent the the default refresh of the form
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,12 +32,6 @@ const QuestionForm = ({ type, addForm }) => {
         addForm(formData)
     }
 
-    const [count, setCount] = useState(0);
-
-    const increment = () => {
-        setCount(count + 1)
-    }
-
     return (
         <Card className="question-card">
             <Form onSubmit={handleSubmit}>
@@ -48,7 +40,7 @@ const QuestionForm = ({ type, addForm }) => {
                         <Form.Label className="question-title">{type}</Form.Label>
                         {
                             type !== "Open Ended" ?
-                                <SButton onClick={() => answersHook.addAnswer(count)} variant="dark" className="edit-button" text="Add answer" />
+                                <SButton onClick={() => answersHook.addAnswer()} variant="dark" className="edit-button" text="Add answer" />
                                 : null
                         }
                     </div>
