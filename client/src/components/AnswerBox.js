@@ -13,7 +13,6 @@ const AnswerBoxes = ({ answersHook, answer, index }) => {
             <Form.Control placeholder="Answer" value={answer} onChange={(e) => answersHook.updateInput(e, index)} className="edit-button text-field" />
             <Button onClick={() => answersHook.deleteAnswer(index)} variant="secondary" className="edit-button text-field" >&#x2715;</Button>
         </InputGroup>
-        // answersHook.answers.map((answer, i) => (createAnswerBox(answer, i)))
     )
 }
 
