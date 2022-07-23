@@ -13,6 +13,7 @@
 
 .construct-answer {
     display: inline-block;
+    
     width: 80%;
     word-break: break-all;
 }
@@ -30,5 +31,6 @@
 }
 
 .up-arrow {
-    content: "\25be  or  \25bc  ?  ";
+    font-size: 28px;
+    padding: 0 8px;
 }

@@ -27,34 +27,53 @@ const CreateSurvey = () => {
         setQuestionType(null);
     }
 
+    // Once the survey is created and saved by user,
+    // we want to assign an id based on index to each question in formData.
+    // This way we have an identifier for each question for future use.
+    const completeSurvey = () => {
+        if (!formData.length) return;
+
+        let formDataCopy = [...formData];
+        const completedSurveyData = formDataCopy.map((data, i) => {
+            return {
+                question: formDataCopy[i].question,
+                answers: formDataCopy[i].answers,
+                type: formDataCopy[i].type,
+                id: i
+            }
+        })
+
+        //this will have to be a fetch most likely. its time for backend work.
+        console.log(completedSurveyData)
+    }
+
     return (
-        <div className="page">
 
-            <div className="main-content">
-                {formData.map((data, i) => (
-                    <ConstructQuestion key={i}
-                        index={i}
-                        data={data}
-                        deleteForm={deleteFormData}
-                        handleMoveUp={moveQuestionUp}
-                        handleMoveDown={moveQuestionDown} />
-                ))}
+        <div className="main-content">
+            {formData.map((data, i) => (
+                <ConstructQuestion key={i}
+                    index={i}
+                    data={data}
+                    deleteForm={deleteFormData}
+                    handleMoveUp={moveQuestionUp}
+                    handleMoveDown={moveQuestionDown} />
+            ))}
 
-                <Card className="create-box">
-                    <Card.Header className="card-header" >Add a question.</Card.Header>
-                    <Card.Body className="button-container">
-                        <SButton variant="dark" onClick={() => setQuestionType("Multiple Choice")} className="create-button" text="Multiple Choice" />
-                        <SButton variant="dark" onClick={() => setQuestionType("Check Boxes")} className="create-button" text="Check Boxes" />
-                        <SButton variant="dark" onClick={() => setQuestionType("Open Ended")} className="create-button" text="Open Ended" />
-                    </Card.Body>
-                </Card>
+            <Card className="create-box">
+                <Card.Header className="card-header" >Add a question.</Card.Header>
+                <Card.Body className="button-container">
+                    <SButton variant="dark" onClick={() => setQuestionType("Multiple Choice")} className="create-button" text="Multiple Choice" />
+                    <SButton variant="dark" onClick={() => setQuestionType("Check Boxes")} className="create-button" text="Check Boxes" />
+                    <SButton variant="dark" onClick={() => setQuestionType("Open Ended")} className="create-button" text="Open Ended" />
+                    <SButton variant="dark" onClick={() => completeSurvey()} className="create-button" text="Complete" />
+                </Card.Body>
+            </Card>
 
-                <div className="break"></div>
-                {type ?
-                    <QuestionForm key={type} type={type} addForm={addFormRemoveQuestionForm} />
-                    : null}
+            <div className="break"></div>
+            {type ?
+                <QuestionForm key={type} type={type} addForm={addFormRemoveQuestionForm} />
+                : null}
 
-            </div>
         </div>
 
     )

@@ -1,7 +1,7 @@
 :root {
     --dark-primary: rgb(43, 42, 51);
     --dark-secondary: rgba(66, 65, 77, 1);
-    --dark-tertiary: rgb(56, 56, 61);
+    --dark-tertiary: rgb(56, 56, 65);
     --light-primary: #F1F1F1;
 }
 
@@ -21,4 +21,22 @@ body, html {
 
 .card-header {
     background-color: var(dar);
+}
+.page {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.main-content {
+    height: auto;
+    width: 630px;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
 }

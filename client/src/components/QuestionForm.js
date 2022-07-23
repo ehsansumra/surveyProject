@@ -17,6 +17,7 @@ const QuestionForm = ({ type, addForm }) => {
 
     const answersHook = AnswersHook();
 
+    // this might be unneccessary
     const createAnswerBox = (answer, index) => {
         return <AnswerBoxes answer={answer} answersHook={answersHook} key={index} index={index} />
     }
@@ -24,9 +25,11 @@ const QuestionForm = ({ type, addForm }) => {
     //Prevent the the default refresh of the form
     const handleSubmit = async (event) => {
         event.preventDefault();
+        // this deep copy may be unneccessary
+        const answersArr = [...answersHook.answers]
         const formData = {
             question: question,
-            answers: answersHook.answers,
+            answers: answersArr,
             type: type
         }
         addForm(formData)

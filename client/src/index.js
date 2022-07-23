@@ -5,11 +5,15 @@ import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import reportWebVitals from './reportWebVitals';
 import CreateSurvey from './components/CreateSurvey';
+import Page from './components/Page';
+import TakeSurvey from './components/TakeSurvey';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CreateSurvey/>
+    <Page>
+      <CreateSurvey />
+    </Page>
   </React.StrictMode>
 );
 

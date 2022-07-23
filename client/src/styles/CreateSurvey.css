@@ -1,25 +1,7 @@
-.page {
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.main-content {
-    height: auto;
-    width: 630px;
-    min-width: 400px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    
-}
 
 .create-box {
     border: 0;
-    
     margin: 5px;
-    margin-bottom: 15px;
     width: 600px;
     min-width: 100px;
     /* background-color: #C0C0C0; */
