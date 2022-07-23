@@ -18,9 +18,9 @@ const CreateSurvey = () => {
         moveQuestionUp,
         formData // state
     } = FormDataHook();
-
+    
     const { setQuestionType, type } = QuestionTypeHook();
-
+    
     //This will ensure that the QuestionForm unrenders after addForm is called.
     const addFormRemoveQuestionForm = (data) => {
         addFormData(data)
