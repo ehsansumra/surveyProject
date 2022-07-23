@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import '../styles/CreateSurvey.css';
 import { SButton } from "./SButton"
 import { QuestionForm } from './QuestionForm';
@@ -8,8 +8,6 @@ import Card from "react-bootstrap/Card"
 import { QuestionTypeHook } from '../hooks/QuestionTypeHook';
 
 const CreateSurvey = () => {
-
-    const [component, setComponent] = useState(null);
 
     const {
         addFormData,
@@ -60,7 +58,7 @@ const CreateSurvey = () => {
             ))}
 
             <Card className="create-box">
-                <Card.Header className="card-header" >Add a question.</Card.Header>
+                <Card.Header className="card-header" >{"Create a question"}</Card.Header>
                 <Card.Body className="button-container">
                     <SButton variant="dark" onClick={() => setQuestionType("Multiple Choice")} className="create-button" text="Multiple Choice" />
                     <SButton variant="dark" onClick={() => setQuestionType("Check Boxes")} className="create-button" text="Check Boxes" />

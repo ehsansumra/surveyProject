@@ -1,31 +1,41 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-
-const handleQuestionType = (data, disabled, id=0) => {
+import RadioButton from "../components/survey_taker/RadioButton";
+import CheckBox from "../components/survey_taker/CheckBox";
+import OpenEnded from "../components/survey_taker/OpenEnded";
+const handleQuestionType = (data, disabled, id = 0, updateCheckBoxes, updateRadioButtons, updateOpenEnded) => {
     if (!data.type) return;
-    let formCheckType = "radio"
-
-    if (data.type === "Check Boxes") formCheckType = "checkbox";
-
+    
+    //gonna have to make this into actual components to bind state to the values.
     if (data.type === "Open Ended") {
-        return <Form.Control as="textarea" className="text-field" disabled={disabled} rows={3} />
-    } else {
-        return (
-            <div>
-                {
-                    data.answers.map((answer, i) => (
-                        <Form.Check key={i}
-                            className="construct-answer"
-                            id="disabled"
-                            name={id.toString()}
-                            type={formCheckType}
-                            disabled={disabled}
-                            label={answer} />))
-                }
-            </div>
-        )
+        return <OpenEnded 
+        id={id}
+        disabled={disabled} 
+        updateOpenEnded={updateOpenEnded} />
     }
+    return (
+        <>{
+            data.answers.map((answer, i) => (
+                data.type === "Multiple Choice" ?
+                    <RadioButton
+                        key={i}
+                        index={i}
+                        id={id}
+                        disabled={disabled}
+                        answer={answer}
+                        updateRadioButtons={updateRadioButtons}
+                         />
+                    : <CheckBox
+                        key={i}
+                        index={i}
+                        id={id}
+                        disabled={disabled}
+                        answer={answer}
+                        updateCheckBoxes={updateCheckBoxes} />
+            ))
+        }</>
+    )
+
 }
 
 export default handleQuestionType;
