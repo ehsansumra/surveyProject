@@ -1,16 +1,17 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-const CheckBox = ({ disabled, id, index, answer, updateCheckBoxes }) => {
+const CheckBox = ({ disabled, id, answer, value}) => {
 
     return (
         <Form.Check
             className="construct-answer"
             id="disabled"
+            value={value}
             name={id.toString()}
             type="checkbox"
             disabled={disabled}
             label={answer}
-            onClick= {(e) => updateCheckBoxes(e, id, index)} />
+             />
     )
 }
 

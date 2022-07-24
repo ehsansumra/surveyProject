@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 
-const testData = [
+let testData = [
     {
         id: 0,
         question: "What is 9 + 10?",
@@ -23,9 +23,20 @@ const testData = [
     },
 
 ]
+app.use(express.json());
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/api/take_survey', (req, res) => {
     res.json(testData);
 });
+
+app.post('/api/create_survey', (req, res) => {
+    testData = req.body;
+    res.send(" you got me")
+});
+
+app.post('/api/complete_survey', (req, res) => {
+
+})
+
+app.listen(port, () => console.log(`Listening on port ${port}`));

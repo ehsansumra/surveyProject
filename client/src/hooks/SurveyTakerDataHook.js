@@ -4,53 +4,44 @@ const SurveyTakerDataHook = () => {
     //answerInputs is an array of arrays. Could be multiple answers due to checkboxes.
     const [answerInputs, setAnswerInputs] = useState([]);
 
-    useEffect(() => {
-        console.log(answerInputs);
-    }, [answerInputs])
+    // useEffect(() => {
+    //     console.log("useEffect " + answerInputs);
+    // }, [answerInputs])
 
     // this should get called once fetch request is made.
     const initializeAnswerInputs = (inputs) => {
         setAnswerInputs(inputs);
     }
 
-    const updateCheckBoxes = (event, id, index)  => {
+    // this operation feels heavy handed
+    const updateCheckBoxes = (event, id)  => {
         const input = event.target.value
         const newArr = [...answerInputs];
-        console.log(newArr)
-        console.log(id)
-        const exists = newArr[id].some(item => item === index);
+        const checkBoxes = newArr[id];
+        
+        const exists = checkBoxes.includes(input);
 
-        if (!exists) {
-            newArr[id].push(index);
-        }
-        if (exists) {
-            newArr[id].splice(index, 1);
-        }
+        if (exists) checkBoxes.splice(checkBoxes.indexOf(input), 1);
+        else checkBoxes.push(input);
 
         setAnswerInputs(newArr);
     }
 
     // handling state for radio buttons
-    const updateRadioButtons = (event, id, index) => {
+    const updateRadioButtons = (event, id) => {
         const input = event.target.value;
-        console.log(id)
-
-        // if (!Array.isArray(input)) return;
-        
         const newArr = [...answerInputs];
 
-        if (input === "on") newArr[id] = [index];
-        else newArr[id] = []
-        
+        newArr[id] = [input];
+
         setAnswerInputs(newArr);
     }
 
-    const updateOpenEnded = (event, index) => {
+    const updateOpenEnded = (event, id) => {
         let input = event.target.value;
-        // if (!Array.isArray(input)) return;
-
         const newArr = [...answerInputs];
-        newArr[index] = [input];
+
+        newArr[id] = [input];
         
         setAnswerInputs(newArr);
     }
