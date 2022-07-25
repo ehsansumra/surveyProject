@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const db = require('./database');
+
 const port = process.env.PORT || 5000;
 
 let testData = [
@@ -36,7 +38,8 @@ app.post('/api/create_survey', (req, res) => {
 });
 
 app.post('/api/complete_survey', (req, res) => {
-
+    const surveyData = req.body;
+    console.log(surveyData)
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
