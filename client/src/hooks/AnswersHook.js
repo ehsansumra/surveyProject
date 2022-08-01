@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 const AnswersHook = () => {
-
     const [answers, setAnswers] = useState([])
 
     const updateInput = (event, index) => {
