@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require('./database');
-
+const createSurvey = require('./index');
 const port = process.env.PORT || 5000;
 
 let testData = [
@@ -32,8 +32,9 @@ app.get('/api/take_survey', (req, res) => {
     res.json(testData);
 });
 
-app.post('/api/create_survey', (req, res) => {
-    testData = req.body;
+app.post('/api/survey', (req, res) => {
+    let surveyData = req.body
+    createSurvey(surveyData);
     res.send(" you got me")
 });
 

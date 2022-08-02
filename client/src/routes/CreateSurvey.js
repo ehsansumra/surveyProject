@@ -43,7 +43,7 @@ const CreateSurvey = () => {
             }
         })
 
-        fetch('/api/create_survey', {
+        fetch('/api/survey', {
             method: 'POST', // or 'PUT'
             credentials: 'include',
             headers: {
