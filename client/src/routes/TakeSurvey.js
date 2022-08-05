@@ -4,7 +4,7 @@ import SurveyTakerDataHook from "../hooks/SurveyTakerDataHook";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Page from '../components/Page';
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 // Router will take survey id, route this page where a fetch request is made based on this ID.
 // fetch will receive question data as a response
 // take in question data and construct a page.
@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 const TakeSurvey = () => {
 
     const [surveyData, setSurveyData] = useState(null);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const {
         initializeAnswerInputs,
@@ -29,7 +30,8 @@ const TakeSurvey = () => {
     let completedSurveyData = null; //this will be updated at final submission
 
     useEffect(() => {
-        fetch("/api/take_survey")
+        const surveyId = searchParams.get("surveyId");
+        fetch("/api/take_survey/" + surveyId)
             .then(res => res.json())
             .then(resSurveyData => {
                 setSurveyData(resSurveyData);

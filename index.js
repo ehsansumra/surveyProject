@@ -25,7 +25,7 @@ const createSurveyAnswers = (question, questionData) => {
 
 const createSurveyQuestion = (survey, questionData) => {
     return survey.createQuestion({
-        text: questionData.question,
+        question: questionData.question,
         type: questionData.type,
         index: questionData.id,
     })
@@ -34,9 +34,7 @@ const createSurveyQuestion = (survey, questionData) => {
 const createSurvey = (surveyData) => {
     sequelize
         .sync()
-        .then(result => {
-            return Survey.create();
-        })
+        .then(result => {return Survey.create();})
         .then(survey => {
             surveyData.forEach(testQuestion => {
                 createSurveyQuestion(survey, testQuestion)
@@ -46,9 +44,7 @@ const createSurvey = (surveyData) => {
                     .catch(err => console.log(err))
             });
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(err => console.log(err))
 }
 
 module.exports = createSurvey;
