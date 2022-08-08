@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        
+
           <Route path="take_survey" element={<TakeSurvey />} />
           <Route path="create_survey" element={<CreateSurvey />} />
         

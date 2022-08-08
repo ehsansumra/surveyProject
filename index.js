@@ -31,11 +31,12 @@ const createSurveyQuestion = (survey, questionData) => {
     })
 }
 
-const createSurvey = (surveyData) => {
-    sequelize
+const createSurvey = async(surveyData) => {
+    let id = await sequelize
         .sync()
         .then(result => {return Survey.create();})
         .then(survey => {
+            surveyId = survey.dataValues.id;
             surveyData.forEach(testQuestion => {
                 createSurveyQuestion(survey, testQuestion)
                     .then(question => {
@@ -43,8 +44,11 @@ const createSurvey = (surveyData) => {
                     })
                     .catch(err => console.log(err))
             });
+            return surveyId;
         })
         .catch(err => console.log(err))
+        
+    return id;
 }
 
 module.exports = createSurvey;

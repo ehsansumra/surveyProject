@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Page from '../components/Page';
 import Button from 'react-bootstrap/Button';
 const CreateSurvey = () => {
+    const [completedSurveyId, setCompletedSurveyId] = useState(null);
 
     const {
         addFormData,
@@ -43,7 +44,7 @@ const CreateSurvey = () => {
             }
         })
 
-        fetch('/api/survey', {
+        const id = await fetch('/api/survey', {
             method: 'POST', // or 'PUT'
             credentials: 'include',
             headers: {
@@ -54,45 +55,64 @@ const CreateSurvey = () => {
             .then((response) => response.text())
             .then((data) => {
                 console.log('Success:', data);
+                return data;
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
 
+        setCompletedSurveyId(id);
     }
 
     return (
         <Page>
+            {!completedSurveyId ?
+                <div className="main-content">
+                    {formData.map((data, i) => (
+                        <ConstructQuestion key={i}
+                            index={i}
+                            data={data}
+                            deleteForm={deleteFormData}
+                            handleMoveUp={moveQuestionUp}
+                            handleMoveDown={moveQuestionDown} />
+                    ))}
 
-        
-        <div className="main-content">
-            {formData.map((data, i) => (
-                <ConstructQuestion key={i}
-                    index={i}
-                    data={data}
-                    deleteForm={deleteFormData}
-                    handleMoveUp={moveQuestionUp}
-                    handleMoveDown={moveQuestionDown} />
-            ))}
+                    <Card className="create-box">
+                        <Card.Header className="card-header" >{"Create a question"}</Card.Header>
+                        <Card.Body className="button-container">
+                            <SButton variant="dark" onClick={() => setQuestionType("Multiple Choice")} className="create-button" text="Multiple Choice" />
+                            <SButton variant="dark" onClick={() => setQuestionType("Check Boxes")} className="create-button" text="Check Boxes" />
+                            <SButton variant="dark" onClick={() => setQuestionType("Open Ended")} className="create-button" text="Open Ended" />
 
-            <Card className="create-box">
-                <Card.Header className="card-header" >{"Create a question"}</Card.Header>
-                <Card.Body className="button-container">
-                    <SButton variant="dark" onClick={() => setQuestionType("Multiple Choice")} className="create-button" text="Multiple Choice" />
-                    <SButton variant="dark" onClick={() => setQuestionType("Check Boxes")} className="create-button" text="Check Boxes" />
-                    <SButton variant="dark" onClick={() => setQuestionType("Open Ended")} className="create-button" text="Open Ended" />
-                    
-                </Card.Body>
-            </Card>
+                        </Card.Body>
+                    </Card>
 
-            <div className="break"></div>
-            {type ?
-                <QuestionForm key={type} type={type} addForm={addFormRemoveQuestionForm} />
-                : null}
-            <Button variant="outline-light" onClick={() => completeSurvey()} className="create-button">Complete</Button>
-            <Link to="../take_survey"><Button variant="outline-light" className="create-button">Take Survey</Button></Link>
+                    <div className="break"></div>
+                    {type ?
+                        <QuestionForm key={type} type={type} addForm={addFormRemoveQuestionForm} />
+                        : null}
+                    <Button variant="outline-light" onClick={() => completeSurvey()} className="create-button">Complete</Button>
+                    <Link to="../take_survey"><Button variant="outline-light" className="create-button">Take Survey</Button></Link>
 
-        </div>
+                </div>
+                :
+                <div className="main-content">
+                    <Card style={{ marginTop: "100px" }} className="question-card">
+                        <Card.Body>
+                            <Card.Text>
+                                Survey Successfully created. Share this link:
+                            </Card.Text>
+                            <Card.Text>
+                                {"localhost:3000/take_survey?surveyId=" + completedSurveyId.toString()}
+                            </Card.Text>
+
+                        </Card.Body>
+                    </Card>
+                </div>
+
+            }
+
+
         </Page>
 
     )

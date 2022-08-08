@@ -3,6 +3,7 @@ import ConstructSurveyQuestion from "../components/ConstructSurveyQuestion";
 import SurveyTakerDataHook from "../hooks/SurveyTakerDataHook";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
 import Page from '../components/Page';
 import { Link, useSearchParams } from "react-router-dom";
 // Router will take survey id, route this page where a fetch request is made based on this ID.
@@ -18,6 +19,7 @@ import { Link, useSearchParams } from "react-router-dom";
 const TakeSurvey = () => {
 
     const [surveyData, setSurveyData] = useState(null);
+    const [submitted, setSubmitted] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
 
     const {
@@ -71,33 +73,48 @@ const TakeSurvey = () => {
     //         answers: ["long ass string"]
     //     }
     // ]
-
     const handleSurveySubmit = () => {
         console.log("Survey submitted")
         console.log(answerInputs)
+        setSubmitted(true);
     }
 
     return (
         <Page>
-        <Form className="main-content">
-            {
-                surveyData ?
-                    surveyData.map((question, i) => (
-                        <ConstructSurveyQuestion
-                            updateCheckBoxes={updateCheckBoxes}
-                            updateRadioButtons={updateRadioButtons}
-                            updateOpenEnded={updateOpenEnded}
-                            key={question.id}
-                            data={question}
-                            id={question.id} />))
-                    : "No data received"
+            {submitted === false ?
+                <Form className="main-content">
+                    {
+                        surveyData ?
+                            surveyData.map((question, i) => (
+                                <ConstructSurveyQuestion
+                                    updateCheckBoxes={updateCheckBoxes}
+                                    updateRadioButtons={updateRadioButtons}
+                                    updateOpenEnded={updateOpenEnded}
+                                    key={question.id}
+                                    data={question}
+                                    id={question.id} />))
+                            : 
+                            <Card className="question-card">
+                                <Card.Body>
+                                    Loading...
+                                </Card.Body>
+                            </Card>
 
+                    }
+                    {/* <Card></Card> */}
+                    <Link to="../create_survey"><Button variant="outline-light" className="create-button">Create Survey</Button></Link>
+                    <Button onClick={handleSurveySubmit} variant="outline-light" className='create-button'>Submit</Button>
+                </Form>
+                :
+                <Form className="main-content">
+                    <Card style={{marginTop:"100px"}}className="question-card">
+                        <Card.Body>
+                            Survey Submitted!
+                        </Card.Body>
+                    </Card>
+                </Form>
             }
-            {/* <Card></Card> */}
-            <Link to="../create_survey"><Button variant="outline-light" className="create-button">Create Survey</Button></Link>
-            <Button onClick={handleSurveySubmit} variant="outline-light" className='create-button'>Submit</Button>
-        </Form>
-        
+
         </Page>
 
     )

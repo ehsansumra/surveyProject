@@ -7,16 +7,17 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
+// make routes and clean up this mess
 app.get('/api/take_survey/:surveyId', async (req, res) => {
     const result = await getSurvey(req.params.surveyId);
     console.log("result", result)
     res.json(result);
 });
 
-app.post('/api/survey', (req, res) => {
+app.post('/api/survey', async (req, res) => {
     let surveyData = req.body
-    createSurvey(surveyData);
-    res.send(" you got me")
+    const id = await createSurvey(surveyData);
+    res.send(id.toString());
 });
 
 app.post('/api/complete_survey', (req, res) => {
