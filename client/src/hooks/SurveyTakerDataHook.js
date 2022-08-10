@@ -15,10 +15,8 @@ const SurveyTakerDataHook = () => {
 
     // this operation feels heavy handed
     const updateCheckBoxes = (event, id)  => {
-        console.log(id);
         const input = event.target.value
         const newArr = [...answerInputs];
-        console.log(newArr)
         const checkBoxes = newArr[id];
         
         const exists = checkBoxes.includes(input);
@@ -33,7 +31,7 @@ const SurveyTakerDataHook = () => {
     const updateRadioButtons = (event, id) => {
         const input = event.target.value;
         const newArr = [...answerInputs];
-
+        console.log("Radio", id);
         newArr[id] = [input];
 
         setAnswerInputs(newArr);

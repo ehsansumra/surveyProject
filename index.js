@@ -3,9 +3,7 @@ const sequelize = require("./database");
 const Survey = require("./models/survey");
 const Question = require("./models/question");
 const Answer = require("./models/answer");
-
-Survey.hasMany(Question);
-Question.hasMany(Answer);
+const Submission = require("./models/submission");
 
 /*
 questionData = {
@@ -50,6 +48,7 @@ const createSurvey = async(surveyData) => {
         
     return id;
 }
+
 
 module.exports = createSurvey;
 

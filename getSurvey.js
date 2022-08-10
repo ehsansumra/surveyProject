@@ -4,9 +4,6 @@ const Survey = require("./models/survey");
 const Question = require("./models/question");
 const Answer = require("./models/answer");
 
-Survey.hasMany(Question);
-Question.hasMany(Answer);
-
 const selectQuestions = async (id) => {
     const questions = await Question.findAll({
         attributes: ["id", "question", "type", "index"],
@@ -45,6 +42,7 @@ const constructSurveyData = async (id) => {
 
         surveyData[questionIdx] = questionData;
     }
+    
     return surveyData;
 }
 
@@ -52,5 +50,6 @@ const getSurvey = async(id) => {
     let data = await constructSurveyData(id);
     return data;
 }
+
 
 module.exports = getSurvey;

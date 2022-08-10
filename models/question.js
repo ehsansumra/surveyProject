@@ -1,11 +1,14 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
+const Answer = require("./answer");
+const Submission = require("./submission");
+const Survey = require("./survey");
 
 const Question = sequelize.define("question", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        allowNull: true,
+        allowNull: false,
         autoIncrement: true,
     },
     question: {
@@ -20,5 +23,8 @@ const Question = sequelize.define("question", {
         allowNull: false,
     },
 });
+
+Question.hasMany(Answer);
+Question.hasMany(Submission);
 
 module.exports = Question;

@@ -3,6 +3,7 @@ const app = express();
 const db = require('./database');
 const createSurvey = require('./index');
 const getSurvey = require('./getSurvey');
+const submitSurvey = require('./submitSurvey');
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -20,9 +21,11 @@ app.post('/api/survey', async (req, res) => {
     res.send(id.toString());
 });
 
-app.post('/api/complete_survey', (req, res) => {
+app.post('/api/complete_survey', async (req, res) => {
     const surveyData = req.body;
-    console.log(surveyData)
+    console.log("completed survey",surveyData)
+    await submitSurvey(surveyData);
+    res.sendStatus(200);
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

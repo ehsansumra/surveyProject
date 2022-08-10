@@ -5,18 +5,19 @@ import CheckBox from "../components/survey_taker/CheckBox";
 import OpenEnded from "../components/survey_taker/OpenEnded";
 
 
-const handleQuestionType = (data, disabled, id = 0, updateCheckBoxes=null, updateRadioButtons=null, updateOpenEnded=null) => {
+const handleQuestionType = (data, disabled, id = 0, index=null, updateCheckBoxes=null, updateRadioButtons=null, updateOpenEnded=null) => {
     if (!data.type) return;
 
     if (data.type === "Open Ended") {
         return <OpenEnded
             id={id}
+            index={index}
             disabled={disabled}
             updateOpenEnded={updateOpenEnded} />
     }
     return (
         <> {data.type === "Multiple Choice" ?
-            <div onChange={(e) => updateRadioButtons(e, id, 0)}>
+            <div onChange={(e) => updateRadioButtons(e, index, 0)}>
                 {
                     data.answers.map((answer, i) => (
                         <RadioButton
@@ -30,7 +31,7 @@ const handleQuestionType = (data, disabled, id = 0, updateCheckBoxes=null, updat
                     ))}
             </div>
             :
-            <div onChange={(e) => updateCheckBoxes(e, id, 0)}>
+            <div onChange={(e) => updateCheckBoxes(e, index, 0)}>
                 {
                     data.answers.map((answer, i) => (
                         <CheckBox

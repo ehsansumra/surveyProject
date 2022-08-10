@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import handleQuestionType from "../utils/HandleQuestionType";
 import Card from "react-bootstrap/Card"
 
-const ConstructSurveyQuestion = ({data, id, updateCheckBoxes, updateRadioButtons, updateOpenEnded}) => {
+const ConstructSurveyQuestion = ({data, id, index=null, updateCheckBoxes, updateRadioButtons, updateOpenEnded}) => {
     //id param used for radio button groups identifier
     //binding inputs time,
     return (
@@ -13,7 +13,7 @@ const ConstructSurveyQuestion = ({data, id, updateCheckBoxes, updateRadioButtons
             </Card.Header>
 
             <Card.Body className="radio-button-container">
-                {handleQuestionType(data, false, id, updateCheckBoxes, updateRadioButtons, updateOpenEnded)}
+                {handleQuestionType(data, false, id, index, updateCheckBoxes, updateRadioButtons, updateOpenEnded)}
             </Card.Body>
 
         </Card>

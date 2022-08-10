@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 const Question = require("./question");
 
-const Answer = sequelize.define("answer", {
+const Submission = sequelize.define("submission", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -14,8 +14,8 @@ const Answer = sequelize.define("answer", {
     },
     index: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-    },
+    }
 });
 
-module.exports = Answer;
+
+module.exports = Submission;

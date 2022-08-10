@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Page from '../components/Page';
+import Nav from 'react-bootstrap/Nav';
 import { Link, useSearchParams } from "react-router-dom";
 // Router will take survey id, route this page where a fetch request is made based on this ID.
 // fetch will receive question data as a response
@@ -36,20 +37,24 @@ const TakeSurvey = () => {
         fetch("/api/take_survey/" + surveyId)
             .then(res => res.json())
             .then(resSurveyData => {
+                console.log("initial", resSurveyData);
                 setSurveyData(resSurveyData);
                 const newArr = resSurveyData.map(question => {
                     return {
-                        id: question.id,
+                        id: question.index,
                         type: question.type,
                         answers: [],
                     }
                 })
+
+                console.log("req", newArr);
 
                 completedSurveyData = newArr;
 
                 const answersArr = newArr.map(question => (
                     question.answers
                 ))
+                console.log("after ", answersArr);
 
                 initializeAnswerInputs(answersArr);
             })
@@ -73,10 +78,28 @@ const TakeSurvey = () => {
     //         answers: ["long ass string"]
     //     }
     // ]
-    const handleSurveySubmit = () => {
-        console.log("Survey submitted")
-        console.log(answerInputs)
-        setSubmitted(true);
+    const handleSurveySubmit = async() => {
+        const surveyId = searchParams.get("surveyId");
+
+        let idx = -1;
+        const submissionData = surveyData.map(data => {
+            idx++;
+            return {
+                questionId: data.id,
+                data: answerInputs[idx]
+            }
+        })
+
+        await fetch('/api/complete_survey', {
+            method: 'POST', // or 'PUT'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(submissionData),
+        }).then(res => setSubmitted(true))
+
+        
     }
 
     return (
@@ -92,7 +115,8 @@ const TakeSurvey = () => {
                                     updateOpenEnded={updateOpenEnded}
                                     key={question.id}
                                     data={question}
-                                    id={question.id} />))
+                                    id={question.id}
+                                    index={question.index} />))
                             : 
                             <Card className="question-card">
                                 <Card.Body>
