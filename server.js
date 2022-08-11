@@ -4,6 +4,7 @@ const db = require('./database');
 const createSurvey = require('./index');
 const getSurvey = require('./getSurvey');
 const submitSurvey = require('./submitSurvey');
+const allSurveys = require("./allSurveys");
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -14,6 +15,11 @@ app.get('/api/take_survey/:surveyId', async (req, res) => {
     console.log("result", result)
     res.json(result);
 });
+
+app.get('api/surveyId', async (req, res) => {
+    const result = await allSurveys();
+    res.json(result);
+})
 
 app.post('/api/survey', async (req, res) => {
     let surveyData = req.body

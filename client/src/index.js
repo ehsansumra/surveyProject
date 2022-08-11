@@ -8,6 +8,7 @@ import CreateSurvey from './routes/CreateSurvey';
 import Page from './components/Page';
 import TakeSurvey from './routes/TakeSurvey';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SurveyList from './routes/SurveyList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
 
           <Route path="take_survey" element={<TakeSurvey />} />
           <Route path="create_survey" element={<CreateSurvey />} />
+          <Route path="test" element={<SurveyList/>}/>
         
       </Routes>
     </BrowserRouter>

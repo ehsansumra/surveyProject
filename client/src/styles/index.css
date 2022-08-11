@@ -40,3 +40,15 @@ body, html {
     flex-wrap: wrap;
     
 }
+
+.question-card {
+    
+    background-color: var(--dark-secondary);
+    color: var(--light-primary);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    margin: 5px;
+
+    width: 600px;
+    border: 0;
+}
