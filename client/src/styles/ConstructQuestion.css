@@ -3,19 +3,26 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--dark-tertiary);
+    padding: 25px;
 }
+
 .construct-question {
     margin-top: 14px;
     display: inline-block;
-    width: 80%;
-    word-break: break-all;
+    width: 100%;
+    margin-right: 20px;
+    word-break: normal;
 }
 
 .construct-answer {
     display: inline-block;
     
-    width: 80%;
+    width: 60%;
     word-break: break-all;
+}
+
+.alt {
+    background-color: var(--dark-primary);
 }
 
 .radio-button-container {

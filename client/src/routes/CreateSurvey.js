@@ -92,7 +92,6 @@ const CreateSurvey = () => {
                         <QuestionForm key={type} type={type} addForm={addFormRemoveQuestionForm} />
                         : null}
                     <Button variant="outline-light" onClick={() => completeSurvey()} className="create-button">Complete</Button>
-                    <Link to="../take_survey"><Button variant="outline-light" className="create-button">Take Survey</Button></Link>
 
                 </div>
                 :

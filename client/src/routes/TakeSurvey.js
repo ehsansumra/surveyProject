@@ -125,8 +125,6 @@ const TakeSurvey = () => {
                             </Card>
 
                     }
-                    {/* <Card></Card> */}
-                    <Link to="../create_survey"><Button variant="outline-light" className="create-button">Create Survey</Button></Link>
                     <Button onClick={handleSurveySubmit} variant="outline-light" className='create-button'>Submit</Button>
                 </Form>
                 :

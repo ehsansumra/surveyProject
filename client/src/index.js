@@ -4,24 +4,14 @@ import './styles/index.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import reportWebVitals from './reportWebVitals';
-import CreateSurvey from './routes/CreateSurvey';
-import Page from './components/Page';
-import TakeSurvey from './routes/TakeSurvey';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SurveyList from './routes/SurveyList';
+
+import AppRouter from './AppRouter';
+import AppNav from './AppNav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-
-          <Route path="take_survey" element={<TakeSurvey />} />
-          <Route path="create_survey" element={<CreateSurvey />} />
-          <Route path="test" element={<SurveyList/>}/>
-        
-      </Routes>
-    </BrowserRouter>
+    <AppRouter/>
   </React.StrictMode>
 );
 

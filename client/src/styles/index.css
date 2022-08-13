@@ -34,7 +34,7 @@ body, html {
 .main-content {
     height: auto;
     width: 630px;
-    min-width: 400px;
+    min-width: 230px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

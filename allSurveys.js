@@ -7,7 +7,7 @@ const allSurveys = async () => {
     const ids = res.map(survey => {
         return survey.dataValues.id
     })
-    console.log(ids);
+    return ids;
 }
 
 module.exports = allSurveys;
