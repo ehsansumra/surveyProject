@@ -42,9 +42,7 @@ const getResults = async (id) => {
     .then(result => {
         return helper(id)
     })
-    console.log(data);
     return data
 }
 
-getResults(7);
 module.exports = getResults;
