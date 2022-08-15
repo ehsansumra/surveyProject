@@ -5,6 +5,8 @@ This app has a REST API backend using Node.js, Express.js, Sequelize ORM and MyS
 
 I made extensive use of React Hooks and functional components to handle state and rendering components. Check out the client/src folder to see how I designed the frontend. Below are screenshots of the app in action.
 
+If you want to run the website, clone the repo. From /surveyProject/client, npm start. Open up another terminal and from /surveyProject, npm run server.
+
 ### Survey creation interface
 ![surveycreationdemo](https://user-images.githubusercontent.com/39845857/184566242-e8506628-10fa-486f-9eef-9deb582ed06a.PNG)
 
