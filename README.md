@@ -3,7 +3,7 @@
 This is a fully responsive and user-friendly interface to create surveys, take surveys, and view the submission data of each survey.
 This app has a REST API backend using Node.js, Express.js, Sequelize ORM and MySQL. It also uses a Single page application frontend architecture using React.
 
-I made extensive use of React Hooks and functional programming to handle state and rendering components. Check out the client/src folder to see how I designed the frontend. Below are screenshots of the app in action.
+I made extensive use of React Hooks and functional components to handle state and rendering components. Check out the client/src folder to see how I designed the frontend. Below are screenshots of the app in action.
 
 ### Survey creation interface
 ![surveycreationdemo](https://user-images.githubusercontent.com/39845857/184566242-e8506628-10fa-486f-9eef-9deb582ed06a.PNG)
