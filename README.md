@@ -1,4 +1,4 @@
-# Hi. I'm Ehsan Sumra and this is my Full Stack Survey Project
+# Hi. I'm Ehsan Sumra and this is my Full Stack Survey Project.
 
 This is a fully responsive and user-friendly interface to create surveys, take surveys, and view the submission data of each survey.
 This app has a REST API backend using Node.js, Express.js, Sequelize ORM and MySQL. It also uses a Single page application frontend architecture using React.
