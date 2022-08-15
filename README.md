@@ -21,3 +21,6 @@ I made extensive use of React Hooks and functional programming to handle state a
 
 ### View the results of all survey submissions. (Work in progress).
 ![resultspage](https://user-images.githubusercontent.com/39845857/184566360-0c7d3dc6-577a-4360-b70c-20c2fc07a2a3.PNG)
+
+### What it looks like on a smaller viewport.
+![responsive](https://user-images.githubusercontent.com/39845857/184567368-f636f0c5-f9d4-4185-b130-c8c77cfc2bcd.PNG)
