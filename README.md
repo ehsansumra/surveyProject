@@ -9,7 +9,7 @@ I made extensive use of React Hooks and functional components to handle state an
 
 You will need [Node.js](https://nodejs.org/en/) installed. Run **npm install** from /surveyProjects and again from /surveyProjects/client
 
-You will need MySQL installed and edit the credentials in [orm/database.js](orm/database.js)
+You will need MySQL installed and edit the credentials in [orm/database.js](orm/database.js) to connect to an empty database.
 
 Check the [Sequelize docs](https://sequelize.org/docs/v6/getting-started/#connecting-to-a-database) for database connection.
 
